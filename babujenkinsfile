@@ -9,7 +9,7 @@ pipeline {
     stage('Checkout') {
       steps {
         echo 'Checkout the source code from GitHub'
-        git branch: 'main', url: 'https://github.com/challadevops1/InsureProject-03May-24.git'
+        git branch: 'main', url: 'https://github.com/devops2300/InsureProject-03May-24.git'
             }
     }
     stage('Package') {
@@ -20,14 +20,14 @@ pipeline {
           }
     stage('Publish Test Reports') {
        steps {
-         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/InsureProject/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
+         publishHTML([allowMissing: false, alwaysLinkToLastBuild: false, keepAll: false, reportDir: '/var/lib/jenkins/workspace/Anusprita-Insurance/target/surefire-reports', reportFiles: 'index.html', reportName: 'HTML Report', reportTitles: '', useWrapperFileDirectly: true])
              }
           }
 
     stage('Create Image using the package') {
        steps {
          echo 'creating a docker image from the package'
-         sh 'docker build -t cbabu85/insure-me-03may:1.0 .'
+         sh 'sh 'docker build -t depos2300/insure-me-03may:1.0 .'
               }
            }
     stage('Docker Login') {
@@ -38,9 +38,9 @@ pipeline {
                                                  }
                            }
               }
-    stage('Push the Image') {
+    stage('Push the Image docker hub') {
        steps {
-          sh 'docker push cbabu85/insure-me-app:5.0'
+          sh 'docker push depos2300/insure-me-app:1.0'
                             }
              }
     stage('Deploy using Ansible') {
